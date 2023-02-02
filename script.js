@@ -18,42 +18,63 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
 
+    const computerChoice = document.querySelector('#computer-choice-span');
+    const parcialResult = document.querySelector('#parcial-result');
+
 
     if (playerSelection == "rock") {
         if (computerSelection == "rock") {
-            console.log(`User: ${playerSelection} | Computer: ${computerSelection} | Tie!`)
+            computerChoice.textContent = '';
+            computerChoice.textContent = `${computerSelection}`;
+            parcialResult.textContent = "It's a tie!"
         } else if (computerSelection == "paper") {
+            computerChoice.textContent = '';
+            computerChoice.textContent = `${computerSelection}`;
+            parcialResult.textContent = "You lose!"
             computerPoints++;
-            console.log(`User: ${playerSelection} | Computer: ${computerSelection} | You lose!`)
         } else {
+            computerChoice.textContent = '';
+            computerChoice.textContent = `${computerSelection}`;
+            parcialResult.textContent = "You win!"
             playerPoints++;
-            console.log(`User: ${playerSelection} | Computer: ${computerSelection} | You win!`)
         }
     } else if (playerSelection == "paper") {
         if (computerSelection == "rock") {
             playerPoints++;
-            console.log(`User: ${playerSelection} | Computer: ${computerSelection} | You win!`)
+            computerChoice.textContent = '';
+            computerChoice.textContent = `${computerSelection}`;
+            parcialResult.textContent = "You win!";
         } else if (computerSelection == "paper") {
-            console.log(`User: ${playerSelection} | Computer: ${computerSelection} | Tie!`)
+            computerChoice.textContent = '';
+            computerChoice.textContent = `${computerSelection}`;
+            parcialResult.textContent = "It's a tie!"
         } else {
             computerPoints++;
-            console.log(`User: ${playerSelection} | Computer: ${computerSelection} | You lose!!`)
+            computerChoice.textContent = '';
+            computerChoice.textContent = `${computerSelection}`;
+            parcialResult.textContent = "You lose!"
         }
     } else {
         if (computerSelection == "rock") {
             computerPoints++;
-            console.log(`User: ${playerSelection} | Computer: ${computerSelection} | You lose!`)
+            computerChoice.textContent = '';
+            computerChoice.textContent = `${computerSelection}`;
+            parcialResult.textContent = "You lose!"
         } else if (computerSelection == "paper") {
             playerPoints++;
-            console.log(`User: ${playerSelection} | Computer: ${computerSelection} | You win!!`)
+            computerChoice.textContent = '';
+            computerChoice.textContent = `${computerSelection}`;
+            parcialResult.textContent = "You win!";
         } else {
-            console.log(`User: ${playerSelection} | Computer: ${computerSelection} | Tie!`)
+            computerChoice.textContent = '';
+            computerChoice.textContent = `${computerSelection}`;
+            parcialResult.textContent = "It's a tie!"
         }
     }
 }
 
 function isGameOver(arg){
-    const result = document.querySelector('#results');
+    const result = document.querySelector('#result-message');
     const playerWinner = document.createElement('div');
 
     if(arg == 5){
@@ -71,75 +92,67 @@ function isGameOver(arg){
 }
 
 
+function resetGame(){
+    playerPoints = 0;
+    computerPoints = 0;
+    const result = document.querySelector('#result-message');
+    result.textContent = "";
+    const playerBoardResult = document.querySelector('#playerPointsResult');
+    const computerBoardResult = document.querySelector('#computerPointsResult');
+    playerBoardResult.textContent = "";
+    computerBoardResult.textContent = "";
+    const computerChoice = document.querySelector('#computer-choice-span');
+    computerChoice.textContent = "";
+    const parcialResult = document.querySelector('#parcial-result');
+    parcialResult.textContent = "";
+}
+
+
 function game() {
+
+    const playerBoardResult = document.querySelector('#playerPointsResult');
+    const computerBoardResult = document.querySelector('#computerPointsResult');
     
     const buttons = document.querySelectorAll('button');
-    // console.log(buttons);
+
     let rodadas = 0;
 
 
         buttons.forEach((button) => {
             button.addEventListener('click', (e) => {
+
+                // Getting computer and player choices
                 const computerSelection = getComputerChoice();
-                const playerSelection = e.target.innerText;
-                console.log(playerSelection.toLowerCase());
+                const playerSelection = e.target.alt;
+                console.log(e.target.alt);
+               
+
+                // Initializing the round 
                 console.log(playRound(playerSelection, computerSelection));
+
+
+                // Showing the computer and player points in the board 
+                playerBoardResult.textContent = `${playerPoints}`;
+                computerBoardResult.textContent = `${computerPoints}`;
                 console.log(playerPoints);
                 console.log(computerPoints);
                 rodadas++;
 
+
+                // Checking if the round is over 
                 isGameOver(rodadas);
 
                 if(rodadas == 5){
                     rodadas = 0;
                     playerPoints = 0;
                     computerPoints = 0;
+
+                    const reset = document.querySelector('#reset-btn');
+                    reset.addEventListener('click', resetGame);
                 }
             })
         })
  
-
-
-    // for (let i = 0; i < 5; i++) {
-    //     buttons.forEach((button) => {
-    //         button.addEventListener('click', (e) => {
-    //             const playerSelection = e.target.innerText;
-    //             const computerSelection = getComputerChoice();
-    //             console.log(playerSelection.toLowerCase());
-
-    //             console.log(playRound(playerSelection, computerSelection));
-    //         })
-    //     })
-    // };
-
-    // if (playerPoints > computerPoints) {
-    //     console.log("You win!");
-    // } else if(playerPoints < computerPoints) {
-    //     console.log("You lose!");
-    // } else{
-    //     console.log("It's a tie!")
-    // }
-
-
-
-    // CERTO \/ 
-
-    // for (let i = 0; i < 5; i++) {
-    //     const playerSelection = prompt("Rock, paper ou scissors?").toLowerCase();
-    //     const computerSelection = getComputerChoice();
-    //     console.log(playRound(playerSelection, computerSelection));
-    //     console.log(playerPoints);
-    // }
-
-    // if (playerPoints > computerPoints) {
-    //     console.log("You win!");
-    // } else if(playerPoints < computerPoints) {
-    //     console.log("You lose!");
-    // } else{
-    //     console.log("It's a tie!")
-    // }
-
-
 
 };
 

@@ -1,0 +1,96 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+#container{
+    height: 100vh;
+    background-color: rgb(158,218,229);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 20px;
+    padding: 50px 0;
+}
+
+h1{
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgb(97, 95, 95);
+}
+
+#player-one{
+    display: flex;
+    gap: 50px;
+}
+
+#player-one button{
+    transition: all .8s;
+}
+
+#player-one button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+    border-color: red;
+}
+
+#player-one button{
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+#player-one img{
+    width: 200px;
+}
+
+
+
+
+/* RESULTADO  */
+
+#results{
+    display: flex;
+    gap: 30px;
+}
+
+.result{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    font-size: 20px;
+}
+
+.result p:nth-child(2){
+    color: red;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+#result-message{
+    font-size: 25px;
+    font-weight: 400;
+}
+
+#reset-btn{
+    background-color: cornflowerblue;
+    border: none;
+    width: 100px;
+    height: 40px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 10px;
+    transition: all .8s;
+}
+
+
+#reset-btn:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    background-color: coral;
+}

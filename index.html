@@ -1,20 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Rock Paper Scissors</title>
 </head>
+
 <body>
-    Rock Paper Scissors
-    <button>Rock</button>
-    <button>Paper</button>
-    <button>Scissors</button>
+
+    <div id="container">
+
+        <h1>Rock Paper Scissors</h1>
+        <p>Choose your weapon and try to beat the computer in a round of first of 5:</p>
+        <div id="player-one">
+            <button>
+                <div class="weapon rock">
+                    <img src="./assets/images/rock.png" alt="rock">
+                </div>
+            </button>
+            <button>
+                <div class="weapon paper">
+                    <img src="./assets/images/paper.png" alt="paper">
+                </div>
+            </button>
+            <button>
+                <div class="weapon paper">
+                    <img src="./assets/images/scissors.png" alt="scissors">
+                </div>
+            </button>
+        </div>
+
+        <div id="choices">
+            <div id="computer-choice">
+                <p>Computer choice: <span id="computer-choice-span"></span></p>
+            </div>
+        </div>
+
+        <div id="parcial-result">
+        </div>
+
+        <div id="results">
+            <div class="result player">
+                <p>Player points:</p>
+                <p id="playerPointsResult">0</p>
+            </div>
+            <div class="result computer">
+                <p>Computer points:</p>
+                <p id="computerPointsResult">0</p>
+            </div>
+        </div>
+
+        <div id="result-message">
+                
+        </div>
+
+        <div class="reset">
+            <button id="reset-btn" type="submit" value="Reset">Reset</button>
+        </div>
+
+    </div>
 
 
-    <div id="results"></div>
 
     <script src="script.js"></script>
 </body>
+
 </html>
