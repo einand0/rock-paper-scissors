@@ -53,21 +53,26 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function isGameOver(arg){
+    const result = document.querySelector('#results');
+    const playerWinner = document.createElement('div');
+
     if(arg == 5){
-        console.log("Acabou!")
-        if(playerPoints > computerPoints){
-            console.log("Você ganhou a rodada!")
-        } else if(playerPoints = computerPoints){
-            console.log("Empatou a rodada!")
+        if(playerPoints == computerPoints){
+            playerWinner.textContent = "A rodada empatou!"
+            result.appendChild(playerWinner);
+        } else if(playerPoints < computerPoints){
+            playerWinner.textContent = "Você perdeu a rodada!"
+            result.appendChild(playerWinner);
         } else{
-            console.log("Você perdeu a rodada!")
+            playerWinner.textContent = "Você ganhou a rodada!"
+            result.appendChild(playerWinner);
         }
     }
 }
 
 
 function game() {
-
+    
     const buttons = document.querySelectorAll('button');
     // console.log(buttons);
     let rodadas = 0;
@@ -84,6 +89,7 @@ function game() {
                 rodadas++;
 
                 isGameOver(rodadas);
+
                 if(rodadas == 5){
                     rodadas = 0;
                     playerPoints = 0;
