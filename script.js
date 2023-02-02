@@ -52,23 +52,89 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-
-function game() {
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = prompt("Rock, paper ou scissors?").toLowerCase();
-        const computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
-        console.log(playerPoints);
-    }
-
-    if (playerPoints > computerPoints) {
-        console.log("You win!");
-    } else if(playerPoints < computerPoints) {
-        console.log("You lose!");
-    } else{
-        console.log("It's a tie!")
+function isGameOver(arg){
+    if(arg == 5){
+        console.log("Acabou!")
+        if(playerPoints > computerPoints){
+            console.log("Você ganhou a rodada!")
+        } else if(playerPoints = computerPoints){
+            console.log("Empatou a rodada!")
+        } else{
+            console.log("Você perdeu a rodada!")
+        }
     }
 }
 
+
+function game() {
+
+    const buttons = document.querySelectorAll('button');
+    // console.log(buttons);
+    let rodadas = 0;
+
+
+        buttons.forEach((button) => {
+            button.addEventListener('click', (e) => {
+                const computerSelection = getComputerChoice();
+                const playerSelection = e.target.innerText;
+                console.log(playerSelection.toLowerCase());
+                console.log(playRound(playerSelection, computerSelection));
+                console.log(playerPoints);
+                console.log(computerPoints);
+                rodadas++;
+
+                isGameOver(rodadas);
+                if(rodadas == 5){
+                    rodadas = 0;
+                    playerPoints = 0;
+                    computerPoints = 0;
+                }
+            })
+        })
+ 
+
+
+    // for (let i = 0; i < 5; i++) {
+    //     buttons.forEach((button) => {
+    //         button.addEventListener('click', (e) => {
+    //             const playerSelection = e.target.innerText;
+    //             const computerSelection = getComputerChoice();
+    //             console.log(playerSelection.toLowerCase());
+
+    //             console.log(playRound(playerSelection, computerSelection));
+    //         })
+    //     })
+    // };
+
+    // if (playerPoints > computerPoints) {
+    //     console.log("You win!");
+    // } else if(playerPoints < computerPoints) {
+    //     console.log("You lose!");
+    // } else{
+    //     console.log("It's a tie!")
+    // }
+
+
+
+    // CERTO \/ 
+
+    // for (let i = 0; i < 5; i++) {
+    //     const playerSelection = prompt("Rock, paper ou scissors?").toLowerCase();
+    //     const computerSelection = getComputerChoice();
+    //     console.log(playRound(playerSelection, computerSelection));
+    //     console.log(playerPoints);
+    // }
+
+    // if (playerPoints > computerPoints) {
+    //     console.log("You win!");
+    // } else if(playerPoints < computerPoints) {
+    //     console.log("You lose!");
+    // } else{
+    //     console.log("It's a tie!")
+    // }
+
+
+
+};
 
 game();
