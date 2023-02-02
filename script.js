@@ -1,7 +1,9 @@
 let playerPoints = 0;
 let computerPoints = 0;
 
+// FUNCTION TO GET THE COMPUTER CHOICE 
 function getComputerChoice() {
+
     let randomIndex = Math.floor(Math.random() * (3 - 0) + 0);
     let computerChoice = "";
 
@@ -16,11 +18,14 @@ function getComputerChoice() {
     return computerChoice;
 }
 
+// FUNCTION TO START A ROUND 
 function playRound(playerSelection, computerSelection) {
 
+    // GETTING THE UI BOARD TO DISPLAY THE COMPUTER CHOICE 
     const computerChoice = document.querySelector('#computer-choice-span');
-    const parcialResult = document.querySelector('#parcial-result');
 
+    // GETTING THE UI BOARD TO DISPLAY THE PARCIAL RESULT 
+    const parcialResult = document.querySelector('#parcial-result');
 
     if (playerSelection == "rock") {
         if (computerSelection == "rock") {
@@ -73,86 +78,95 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function isGameOver(arg){
+// FUNCTION TO CHECK IF THE GAME IS OVER 
+function isGameOver(arg) {
+
+    // GETTING THE UI BOARD TO DISPLAY THE FINAL RESULT 
     const result = document.querySelector('#result-message');
     const playerWinner = document.createElement('div');
 
-    if(arg == 5){
-        if(playerPoints == computerPoints){
-            playerWinner.textContent = "A rodada empatou!"
+    if (arg == 5) {
+        if (playerPoints == computerPoints) {
+            playerWinner.textContent = "It's a tie in this round!"
             result.appendChild(playerWinner);
-        } else if(playerPoints < computerPoints){
-            playerWinner.textContent = "Você perdeu a rodada!"
+        } else if (playerPoints < computerPoints) {
+            playerWinner.textContent = "You lose this round!"
             result.appendChild(playerWinner);
-        } else{
-            playerWinner.textContent = "Você ganhou a rodada!"
+        } else {
+            playerWinner.textContent = "You win this round!"
             result.appendChild(playerWinner);
         }
     }
 }
 
+// FUNCTION TO RESET GAME
+function resetGame() {
 
-function resetGame(){
-    playerPoints = 0;
-    computerPoints = 0;
+    // GETTING ALL THE INFORMATION THE NEED TO BE RESETED 
     const result = document.querySelector('#result-message');
-    result.textContent = "";
     const playerBoardResult = document.querySelector('#playerPointsResult');
     const computerBoardResult = document.querySelector('#computerPointsResult');
+    const computerChoice = document.querySelector('#computer-choice-span');
+    const parcialResult = document.querySelector('#parcial-result');
+
+    playerPoints = 0;
+    computerPoints = 0;
+    result.textContent = "";
     playerBoardResult.textContent = "";
     computerBoardResult.textContent = "";
-    const computerChoice = document.querySelector('#computer-choice-span');
     computerChoice.textContent = "";
-    const parcialResult = document.querySelector('#parcial-result');
     parcialResult.textContent = "";
 }
 
 
-function game() {
+// GAME FUNCTION 
 
-    const playerBoardResult = document.querySelector('#playerPointsResult');
-    const computerBoardResult = document.querySelector('#computerPointsResult');
-    
-    const buttons = document.querySelectorAll('button');
+function game() {
 
     let rodadas = 0;
 
+    // GETTIN THE UI BOARD INFORMATION 
+    const playerBoardResult = document.querySelector('#playerPointsResult');
+    const computerBoardResult = document.querySelector('#computerPointsResult');
 
-        buttons.forEach((button) => {
-            button.addEventListener('click', (e) => {
+    // GETTIN THE BUTTONS 
+    const buttons = document.querySelectorAll('button');
 
-                // Getting computer and player choices
-                const computerSelection = getComputerChoice();
-                const playerSelection = e.target.alt;
-                console.log(e.target.alt);
-               
+    buttons.forEach((button) => {
+        button.addEventListener('click', (e) => {
 
-                // Initializing the round 
-                console.log(playRound(playerSelection, computerSelection));
-
-
-                // Showing the computer and player points in the board 
-                playerBoardResult.textContent = `${playerPoints}`;
-                computerBoardResult.textContent = `${computerPoints}`;
-                console.log(playerPoints);
-                console.log(computerPoints);
-                rodadas++;
+            // Getting computer and player choices
+            const computerSelection = getComputerChoice();
+            const playerSelection = e.target.alt;
+            console.log(e.target.alt);
 
 
-                // Checking if the round is over 
-                isGameOver(rodadas);
+            // Initializing the round 
+            console.log(playRound(playerSelection, computerSelection));
 
-                if(rodadas == 5){
-                    rodadas = 0;
-                    playerPoints = 0;
-                    computerPoints = 0;
 
-                    const reset = document.querySelector('#reset-btn');
-                    reset.addEventListener('click', resetGame);
-                }
-            })
+            // Showing the computer and player points in the board 
+            playerBoardResult.textContent = `${playerPoints}`;
+            computerBoardResult.textContent = `${computerPoints}`;
+            console.log(playerPoints);
+            console.log(computerPoints);
+            rodadas++;
+
+
+            // Checking if the round is over 
+            isGameOver(rodadas);
+
+            if (rodadas == 5) {
+                rodadas = 0;
+                playerPoints = 0;
+                computerPoints = 0;
+
+                const reset = document.querySelector('#reset-btn');
+                reset.addEventListener('click', resetGame);
+            }
         })
- 
+    })
+
 
 };
 
